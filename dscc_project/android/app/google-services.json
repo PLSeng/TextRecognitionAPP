@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "821224193760",
+    "project_id": "dsccproject-70889",
+    "storage_bucket": "dsccproject-70889.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:821224193760:android:05a21d3b71f6d0661d9a85",
+        "android_client_info": {
+          "package_name": "com.example.dscc_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNfNOXlxZgsiXWLt4b3FnJUAsQUjSdyWo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
