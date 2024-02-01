@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dscc_project/widgets/rounded_circular_button.dart';
 import 'package:dscc_project/widgets/rounded_text_form_field.dart';
+import 'package:lottie/lottie.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -22,7 +23,6 @@ class _LoginPageState extends State<LoginPage> {
 
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       backgroundColor: const Color.fromRGBO(
         255,
         255,
@@ -64,10 +64,13 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
           ),
-          Image.asset(
-            "assets/images/illustration.png",
-            width: MediaQuery.of(context).size.width * 0.45,
-            fit: BoxFit.fill,
+          Padding(padding: EdgeInsets.only(right: 20),
+            child: Lottie.asset(
+              "assets/animations/1706798579979.json",
+              width: MediaQuery.of(context).size.width * 0.3,
+              height: MediaQuery.of(context).size.height * 0.20,
+              fit: BoxFit.fill,
+            ),
           )
         ],
       ),
@@ -75,30 +78,38 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _loginForm() {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height * 0.75,
-      child: Container(
-        color: const Color.fromRGBO(
-          255,
-          255,
-          255,
-          1.0,
-        ),
-        child: Form(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 10,
-              vertical: 25,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                _formFields(),
-                _bottomButtons(),
-              ],
+    return SingleChildScrollView( // Added SingleChildScrollView
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        // Remove the fixed height to allow dynamic resizing
+        child: Container(
+          color: const Color.fromRGBO(
+            255,
+            255,
+            255,
+            1.0,
+          ),
+          child: Form(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10,
+                vertical: 25,
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  _formFields(),
+                  // Dynamic height if keyboard is open
+                  SizedBox(
+                    height: MediaQuery.of(context).viewInsets.bottom > 0
+                        ? MediaQuery.of(context).size.height * 0.05
+                        : MediaQuery.of(context).size.height * 0.35,
+                  ),
+                  _bottomButtons(),
+                ],
+              ),
             ),
           ),
         ),

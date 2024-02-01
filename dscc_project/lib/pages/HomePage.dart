@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 // HomePage class have 3 centre buttons to navigate to different pages
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
-  static const String _title = 'Home Page';
+  static const String _title = 'Homepage';
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -51,8 +52,8 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          Image.asset(
-            "assets/images/illustration.png",
+          Lottie.asset(
+            "assets/animations/1706799477387.json",
             width: MediaQuery.of(context).size.width * 0.45,
             fit: BoxFit.fill,
           )

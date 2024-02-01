@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class ResultScreen extends StatelessWidget {
   final String text;
@@ -104,7 +105,7 @@ class ResultScreen extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              'Presentation: ${infoList[4]}',
+                              int.parse(infoList[4]) == 1 ? 'Attendence: ${infoList[4]} time' : 'Attendence: ${infoList[4]} times',
                               style: const TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
@@ -144,7 +145,22 @@ class ResultScreen extends StatelessWidget {
                         );
                       }
                     } else {
-                      return const SizedBox();
+                      return Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                            ),
+                            Lottie.asset('assets/animations/1706797738146.json', width: 200, height: 200),
+                            const SizedBox(height: 20),
+                            const Text('No Name Matched Please Try Again' , style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),),
+                          ],
+                        ),
+                      );
                     }
                   }),
             ],
