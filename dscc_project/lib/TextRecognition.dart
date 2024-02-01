@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:dscc_project/pages/result_screen.dart';
 
@@ -86,9 +87,18 @@ class _TextRecognitionPageState extends State<TextRecognitionPage> with WidgetsB
                   Container(
                     padding: const EdgeInsets.only(bottom: 30.0),
                     child: Center(
-                      child: ElevatedButton(
-                        onPressed: _scanImage,
-                        child: const Text('Scan text'),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ElevatedButton(
+                            onPressed: _pickImageFromGallery,
+                            child: const Text('Gallery'),
+                          ),
+                          ElevatedButton(
+                            onPressed: _scanImage,
+                            child: const Text('Scan'),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -162,6 +172,40 @@ class _TextRecognitionPageState extends State<TextRecognitionPage> with WidgetsB
     }
     setState(() {});
   }
+
+  Future<void> _pickImageFromGallery() async {
+    final ImagePicker _picker = ImagePicker();
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      final File file = File(image.path);
+      _processImage(file);
+    }
+  }
+
+  Future<void> _processImage(File file) async {
+    final navigator = Navigator.of(context);
+
+    try {
+      final inputImage = InputImage.fromFile(file);
+      final recognizedText = await textRecognizer.processImage(inputImage);
+
+      await navigator.push(
+        MaterialPageRoute(
+          builder: (BuildContext context) =>
+              ResultScreen(text: recognizedText.text),
+        ),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('An error occurred when scanning text'),
+        ),
+      );
+    }
+  }
+
+
 
   Future<void> _scanImage() async {
     if (_cameraController == null) return;

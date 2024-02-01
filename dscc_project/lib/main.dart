@@ -1,5 +1,6 @@
 import 'package:dscc_project/TextRecognition.dart';
 import 'package:dscc_project/pages/AddStudent.dart';
+import 'package:dscc_project/pages/DataTable.dart';
 import 'package:dscc_project/pages/HomePage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/home': (context) => const HomePage(),
         '/login': (context) => const LoginPage(),
-        '/display': (context) => const HomePage(),
+        '/display': (context) => DisplayAllScreen(),
         '/scan': (context) => const TextRecognitionPage(),
         '/addStudent': (context) => AddStudentPage(),
       },

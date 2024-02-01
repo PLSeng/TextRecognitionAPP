@@ -9,7 +9,8 @@ class AddStudentPage extends StatefulWidget {
 class _AddStudentPageState extends State<AddStudentPage> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _idController = TextEditingController();
-  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
   final TextEditingController _genderController = TextEditingController();
   final TextEditingController _levelController = TextEditingController();
 
@@ -17,7 +18,8 @@ class _AddStudentPageState extends State<AddStudentPage> {
     if (_formKey.currentState!.validate()) {
       await FirebaseFirestore.instance.collection('students').add({
         'id': _idController.text,
-        'name': _nameController.text,
+        'firstName': _firstNameController.text,
+        'lastName': _lastNameController.text,
         'gender': _genderController.text,
         'level': _levelController.text,
         'presentation': 0, // Starting value for presentation count
@@ -25,7 +27,8 @@ class _AddStudentPageState extends State<AddStudentPage> {
 
       // Clear the text fields after successful addition
       _idController.clear();
-      _nameController.clear();
+      _firstNameController.clear();
+      _lastNameController.clear();
       _genderController.clear();
       _levelController.clear();
 
@@ -58,11 +61,21 @@ class _AddStudentPageState extends State<AddStudentPage> {
                 },
               ),
               TextFormField(
-                controller: _nameController,
-                decoration: InputDecoration(labelText: 'Name'),
+                controller: _lastNameController,
+                decoration: InputDecoration(labelText: 'Last Name'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter name';
+                    return 'Please enter Last Name';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: _firstNameController,
+                decoration: InputDecoration(labelText: 'First Name'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter First Name';
                   }
                   return null;
                 },
