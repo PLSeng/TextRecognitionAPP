@@ -76,7 +76,7 @@ class _HomePageState extends State<HomePage> {
             Navigator.pushNamed(context, '/addStudent');
           }),
           _buildButton("Logout", () {
-            Navigator.pushNamed(context, '/login');
+            Navigator.pop(context);
           }),
         ],
       ),
