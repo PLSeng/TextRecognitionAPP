@@ -17,6 +17,7 @@ dependencies:
   cloud_firestore: ^4.14.0
   image_picker: ^0.8.4+2
   lottie: ^1.2.1
+  rive: ^0.12.4
 
 dev_dependencies:
   flutter_test:
@@ -32,3 +33,4 @@ flutter:
     - assets/animations/1706797738146.json
     - assets/animations/1706798579979.json
     - assets/animations/1706799477387.json
+    - assets/animations/animated_login_character.riv

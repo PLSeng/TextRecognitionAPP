@@ -5,12 +5,15 @@ class RoundedTextFormField extends StatelessWidget {
   final String hintText;
   final IconData prefixIcon;
   final TextEditingController controller;
+  // get onchange (value) for text form field
+  final Function(String) onChanged;
 
   const RoundedTextFormField(
       {super.key,
       this.obscureText = false,
       required this.hintText,
-      required this.prefixIcon, required this.controller,});
+      required this.prefixIcon, required this.controller,
+      required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +42,7 @@ class RoundedTextFormField extends StatelessWidget {
             ),
           ),
           child: TextFormField(
+            onChanged: onChanged,
             controller: controller,
             decoration: InputDecoration(
               prefixIcon: Icon(
