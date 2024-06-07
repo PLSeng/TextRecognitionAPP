@@ -3,6 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lottie/lottie.dart';
 
 class DisplayAllScreen extends StatefulWidget {
+  const DisplayAllScreen({super.key});
+
   @override
   _DisplayAllScreenState createState() => _DisplayAllScreenState();
 }
@@ -34,9 +36,9 @@ class _DisplayAllScreenState extends State<DisplayAllScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('All Students', style: TextStyle(color: Colors.black87)),
+        title: const Text('All Students', style: TextStyle(color: Colors.black87)),
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color: Colors.black87),
+        iconTheme: const IconThemeData(color: Colors.black87),
         elevation: 1,
       ),
       body: FutureBuilder<List<Student>>(
@@ -50,17 +52,17 @@ class _DisplayAllScreenState extends State<DisplayAllScreen> {
                 children: [
                   Lottie.asset('assets/animations/1706797738146.json',
                       width: 200, height: 200),
-                  SizedBox(height: 20),
-                  Text('Loading...', style: TextStyle(fontSize: 18, color: Colors.black54)),
+                  const SizedBox(height: 20),
+                  const Text('Loading...', style: TextStyle(fontSize: 18, color: Colors.black54)),
                 ],
               ),
             );
           } else if (snapshot.hasError) {
             return Center(
                 child: Text('Error: ${snapshot.error}',
-                    style: TextStyle(fontSize: 18, color: Colors.redAccent)));
+                    style: const TextStyle(fontSize: 18, color: Colors.redAccent)));
           } else if (!snapshot.hasData) {
-            return Center(
+            return const Center(
                 child: Text('No data available', style: TextStyle(fontSize: 18, color: Colors.black54)));
           } else {
             List<Student> students = snapshot.data!;
@@ -72,10 +74,10 @@ class _DisplayAllScreenState extends State<DisplayAllScreen> {
                   final student = students[index];
                   return Card(
                     elevation: 1,
-                    margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                    margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
                     child: ListTile(
-                      title: Text(student.name, style: TextStyle(fontSize: 16)),
-                      trailing: Text('${student.presentations}', style: TextStyle(fontSize: 16)),
+                      title: Text(student.name, style: const TextStyle(fontSize: 16)),
+                      trailing: Text('${student.presentations}', style: const TextStyle(fontSize: 16)),
                     ),
                   );
                 },
@@ -90,8 +92,8 @@ class _DisplayAllScreenState extends State<DisplayAllScreen> {
           Navigator.pushNamed(context, '/addStudent');
 
         },
-        child: Icon(Icons.add_outlined),
         backgroundColor: Colors.blue,
+        child: const Icon(Icons.add_outlined),
 
       ),
     );

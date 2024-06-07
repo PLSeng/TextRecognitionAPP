@@ -174,8 +174,8 @@ class _TextRecognitionPageState extends State<TextRecognitionPage> with WidgetsB
   }
 
   Future<void> _pickImageFromGallery() async {
-    final ImagePicker _picker = ImagePicker();
-    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
     if (image != null) {
       final File file = File(image.path);

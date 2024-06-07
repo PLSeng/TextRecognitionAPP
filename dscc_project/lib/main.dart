@@ -14,7 +14,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -39,9 +39,9 @@ class MyApp extends StatelessWidget {
       routes: {
         '/home': (context) => const HomePage(),
         '/login': (context) => const LoginPage(),
-        '/display': (context) => DisplayAllScreen(),
+        '/display': (context) => const DisplayAllScreen(),
         '/scan': (context) => const TextRecognitionPage(),
-        '/addStudent': (context) => AddStudentPage(),
+        '/addStudent': (context) => const AddStudentPage(),
       },
     );
   }

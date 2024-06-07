@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(255, 255, 255, 1),
+      backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
       body: _buildUI(),
     );
   }
@@ -89,17 +89,17 @@ class _HomePageState extends State<HomePage> {
       padding: const EdgeInsets.all(8.0),
       child: ElevatedButton(
         onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.blue,
+          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+        ),
         child: Text(
           text,
           style: const TextStyle(
           color: Colors.white,
           fontSize: 30,
           fontWeight: FontWeight.bold,
-        ),),
-        style: ElevatedButton.styleFrom(
-          primary: Colors.blue,
-          padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-        )
+        ),)
       ),
     );
   }

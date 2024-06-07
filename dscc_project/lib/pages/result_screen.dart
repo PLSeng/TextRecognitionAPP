@@ -14,9 +14,9 @@ class ResultScreen extends StatelessWidget {
     List<String> firstNameList = [];
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection('students').get();
-    querySnapshot.docs.forEach((document) {
+    for (var document in querySnapshot.docs) {
       firstNameList.add(document['firstName']);
-    });
+    }
     int position = -1;
     // TODO: check if the text contain any firstname from the list the query all info if that firstname from db else return text("Not found")
     for (int i = 0; i < firstNameList.length; i++) {
@@ -40,13 +40,13 @@ class ResultScreen extends StatelessWidget {
         .where('firstName', isEqualTo: firstName)
         .get();
 
-    querySnapshot.docs.forEach((document) {
+    for (var document in querySnapshot.docs) {
       detailList.add(document['id']);
       detailList.add(document['firstName']);
       detailList.add(document['lastName']);
       detailList.add(document['level']);
       detailList.add(document['presentation'].toString());
-    });
+    }
 
     return detailList;
   }
@@ -59,9 +59,9 @@ class ResultScreen extends StatelessWidget {
         .where('firstName', isEqualTo: infoList[1])
         .get();
 
-    querySnapshot.docs.forEach((document) {
+    for (var document in querySnapshot.docs) {
       document.reference.update({'presentation': document['presentation'] + 1});
-    });
+    }
   }
 
   // check if the text contain any firstname from the list the query all info if that firstname from db else return text("Not found")
@@ -150,7 +150,7 @@ class ResultScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            SizedBox(
+                            const SizedBox(
                             ),
                             Lottie.asset('assets/animations/1706797738146.json', width: 200, height: 200),
                             const SizedBox(height: 20),
